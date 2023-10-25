@@ -30,6 +30,7 @@ def read_root():
 @app.post("/predict")
 def predict(file: UploadFile = File(...)):
     try:
+        print(file.filename)
         model = tf.keras.models.load_model(MODEL_PATH, compile=False)
         model.compile(tf.keras.optimizers.Adam(learning_rate=0.0001), loss='binary_crossentropy', metrics=['accuracy'])
         
